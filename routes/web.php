@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $Ambientes = \App\Ambiente::all();
+    return $Ambientes;
+    //return view('welcome');
 });
 
 Route::get('/sobre', function() {
     return view('sobre');
 
 });
+
+Route::resource('/ambientes', 'ambienteController');
+
+Route::resource('/sgbds', 'sgbdController');
+
+Route::resource('/gruposUsuarios', 'grupoUsuarioController');
