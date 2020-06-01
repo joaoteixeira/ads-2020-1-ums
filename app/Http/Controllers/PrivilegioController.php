@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sgbd;
+use App\Privilegio;
 
 class PrivilegioController extends Controller
 {
@@ -13,7 +15,9 @@ class PrivilegioController extends Controller
      */
     public function index()
     {
-        //
+        $privilegios = Privilegio::list();
+
+        return view('privilegio.list', array('privilegios' => $privilegios));
     }
 
     /**
@@ -23,7 +27,8 @@ class PrivilegioController extends Controller
      */
     public function create()
     {
-        //
+        $sgbds = Sgbd::All();
+        return view('privilegio.create', array('sgbds' => $sgbds));
     }
 
     /**
@@ -34,7 +39,8 @@ class PrivilegioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+ 
+        return $request;
     }
 
     /**

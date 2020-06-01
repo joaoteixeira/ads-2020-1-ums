@@ -12,13 +12,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th><th>NOME</th>
+                    <th>#</th>
+                    <th>NOME</th>
+                    <th>SGBD</th>
+                    <th>OPÇÕES</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($privilegios as $privilegio)
                 <tr>
-                    <td>{{ $loop->iteration }}</td><td>{{ $grupo->NOME }}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $privilegio->NOME }}</td>
+                    <td>{{ $privilegio->SGBD }}</td>
+                    <td><a href="privilegios/{{ $privilegio->ID }}/edit"><i class="far fa-edit"></i></a><a href="privilegios/confirm/{{ $privilegio->ID }}"><i class="fas fa-trash-alt"></i></td>
                 </tr>
                 @endforeach
             </tbody>

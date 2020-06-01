@@ -12,13 +12,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th><th>NOME</th><th>SGBD</th><th>OPÇÕES</th>
+                    <th>#</th>
+                    <th>NOME</th>
+                    <th>SGBD</th>
+                    <th>OPÇÕES</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($ambientes as $ambiente)
                 <tr>
-                    <td>{{ $loop->iteration }}</td><td>{{ $ambiente->NOME }}</td><td>{{ $ambiente->SGBD_ID }}</td><td><a href="/ambientes/{{ $ambiente->ID }}/edit"><i class="far fa-edit"></i></a></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $ambiente->NOME }}</td>
+                    <td>{{ $ambiente->SGBD }}</td>
+                    <td><a href="ambientes/{{ $ambiente->ID }}/edit"><i class="far fa-edit"></i></a><a href="ambientes/confirm/{{ $ambiente->ID }}"><i class="fas fa-trash-alt"></i></td>
                 </tr>
                 @endforeach
             </tbody>

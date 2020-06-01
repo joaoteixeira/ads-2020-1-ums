@@ -14,7 +14,8 @@ class GrupoUsuarioController extends Controller
      */
     public function index()
     {
-        $grupos = GrupoUsuario::All();
+        $grupos = GrupoUsuario::list();
+
         return view('grupoUsuario.list', array('grupos' => $grupos));
     }
 
@@ -38,7 +39,7 @@ class GrupoUsuarioController extends Controller
     {
         $grupos = GrupoUsuario::create($request->all());
         
-        return redirect('gruposUsuarios')->with('status', 'Grupo de Usuário Cadastrado com Sucesso!');
+        return redirect('gruposUsuarios')->with('status', 'Grupo de usuário cadastrado com sucesso!');
     }
 
     /**
@@ -60,7 +61,9 @@ class GrupoUsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $grupo = GrupoUsuario::find($id);
+
+        return view ('grupoUsuario.edit', array('grupo' => $grupo));
     }
 
     /**
@@ -72,7 +75,31 @@ class GrupoUsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $grupo = GrupoUsuario::find($id);
+        $grupo->update($request->all());
+
+        return redirect('gruposUsuarios')->with('status', 'Grupo de usuários atualizado com sucesso!');
+    }
+
+     /**
+     * Confirmação se pretende realmente deletar um grupo de usuários.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm($id)
+    {
+        $grupo = GrupoUsuario::getDataToConfirm($id);
+        
+        if ($grupo['0']->QTD_USUARIOS > 0) {
+            $mensagem = 'Deseja realmente deletar o grupo de usuários '. $grupo['0']->NOME  .' ? Atualmente existem {{ $grupo["0"]->QTD_USUARIOS }} usuários nesse grupo!';    
+        } else {
+            $mensagem = 'Deseja realmente deletar o grupo de usuários '.  $grupo['0']->NOME  .' ?';
+        }
+
+        $grupo = GrupoUsuario::find($id);
+        
+        return view('grupoUsuario.confirm', array('grupo' => $grupo), array('mensagem' => $mensagem)); 
     }
 
     /**
@@ -83,6 +110,9 @@ class GrupoUsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $grupo = GrupoUsuario::find($id);
+       $grupo->delete();
+
+       return redirect('gruposUsuarios')->with('sucess', 'Grupo de usuários {$grupo->NOME} deletado com sucesso!');
     }
 }

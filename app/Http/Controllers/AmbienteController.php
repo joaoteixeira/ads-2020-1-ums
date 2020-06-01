@@ -15,7 +15,8 @@ class AmbienteController extends Controller
      */
     public function index()
     {
-        $ambientes = Ambiente::All();
+        $ambientes = Ambiente::list();
+        
         return view('ambiente.list', array('ambientes' => $ambientes));
     }
 
@@ -40,7 +41,7 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::create($request->all());
         
-        return redirect('ambientes')->with('status', 'Ambiente Cadastrado com Sucesso!');
+        return redirect('ambientes')->with('status', 'Ambiente cadastrado com sucesso!');
     }
 
     /**
@@ -79,7 +80,28 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::find($id);
         $ambiente->update($request->all());
 
-        return redirect('ambientes')->with('status', 'Ambiente Atualizado com Sucesso!');
+        return redirect('ambientes')->with('status', 'Ambiente atualizado com sucesso!');
+    }
+
+    /**
+     * Confirmação se pretende realmente o ambiente.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm($id)
+    {
+        $ambiente = Ambiente::getDataToConfirm($id);
+        
+        if ($ambiente['0']->QTD_ACESSOS > 0) {
+            $mensagem = 'Deseja realmente deletar o ambiente '. $ambiente['0']->NOME  .' ? Atualmente existem {{ $ambiente["0"]->QTD_ACESSOS }} acessos cadastrados ao mesmo!';    
+        } else {
+            $mensagem = 'Deseja realmente deletar o ambiente '.  $ambiente['0']->NOME  .' ?';
+        }
+
+        $ambiente = Ambiente::find($id);
+
+        return view('ambiente.confirm', array('ambiente' => $ambiente), array('mensagem' => $mensagem)); 
     }
 
     /**
@@ -90,6 +112,9 @@ class AmbienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ambiente = Ambiente::find($id);
+        $ambiente->delete();
+
+        return redirect('ambientes')->with('sucess', 'Ambiente {$ambiente->NOME} deletado com sucesso!');
     }
 }

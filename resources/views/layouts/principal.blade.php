@@ -19,6 +19,8 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+  <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -394,6 +396,23 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+  <script src="{{ asset('js/select2.min.js') }}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-multiple').select2();
+    });
+
+    $(document).ready(function(){
+      $('.js-multiple-data').click(function(){
+        var b = document.getElementById('teste');
+        b.value = $('.js-multiple').select2().val();
+      });
+    });
+
+
+  </script>
 
   <!-- Page level plugins 
   <script src="vendor/chart.js/Chart.min.js"></script>

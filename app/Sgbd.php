@@ -10,4 +10,9 @@ class Sgbd extends Model
     protected $primaryKey = 'ID';
     protected $table = 'SGBDS';
     protected $fillable = ['NOME'];
+
+    public function privilegios(){
+
+        return $this->belongsToMany('\App\Privilegio', 'SGBD_PRIVILEGIOS', 'PRIVILEGIO_ID', 'SGBD_ID');
+    }
 }

@@ -3,6 +3,6 @@
 @section('title-content', 'Título Sobre')
 @section('content')
     <div class="title m-b-md">
-        Página sobre do sistema, usando blande template
+    <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" >
     </div>
 @endsection
