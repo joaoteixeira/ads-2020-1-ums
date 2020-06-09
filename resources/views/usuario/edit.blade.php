@@ -2,12 +2,12 @@
 @section('title', 'Privilégios')
 @section('title-content', 'Editar Privilégio')
 @section('content')
-    <form action="/privilegios/{{ $privilegio->ID }}" method="post">
+    <form action="/privilegios/{{ $usuario->ID }}" method="post">
         @csrf
         @method('PUT')
         <div class="form-group">
             <label for="">Nome</label>
-            <input type="text" class="form-control text-uppercase" id="" name="NOME" value="{{ $privilegio->NOME }}" >
+            <input type="text" class="form-control text-uppercase" id="" name="NOME" value="{{ $usuario->NOME }}" >
         </div>
         <div class="form-group">
             <label for="">SGBD's válidos para o privilégio</label>

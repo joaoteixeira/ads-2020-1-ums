@@ -13,6 +13,6 @@ class Sgbd extends Model
 
     public function privilegios(){
 
-        return $this->belongsToMany('\App\Privilegio', 'SGBD_PRIVILEGIOS', 'PRIVILEGIO_ID', 'SGBD_ID');
+        return $this->belongsToMany('\App\Privilegio', 'SGBD_PRIVILEGIOS', 'SGBD_ID', 'PRIVILEGIO_ID');
     }
 }

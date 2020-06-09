@@ -6,7 +6,7 @@
         @csrf
         <div class="form-group">
             <label for="">Nome do Grupo</label>
-            <input type="text" class="form-control" id="" name="NOME">
+            <input type="text" class="form-control text-uppercase" id="" name="NOME">
         </div>
         <div class="form-group">
             <label for="">Descrição do Grupo</label>

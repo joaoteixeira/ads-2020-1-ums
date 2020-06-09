@@ -1,6 +1,6 @@
 @extends('layouts.principal')
-@section('title', 'Privilégios')
-@section('title-content', 'Privilégios Cadastrados')
+@section('title', 'Usuários')
+@section('title-content', 'Usuários Cadastrados')
 @section('content')
     <div class="title m-b-md">
         @if (session('status'))
@@ -13,23 +13,27 @@
                 {{ session('error') }}
             </div>
         @endif
-        <a class="btn btn-primary" href="{{ route('privilegios.create') }}">Cadastrar Privilégio</a>
+        <a class="btn btn-primary" href="{{ route('usuarios.create') }}">Cadastrar Usuário</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>NOME</th>
-                    <th>SGBD's</th>
+                    <th>USER</th>
+                    <th>HOST</th>
+                    <th>GRUPO</th>
+                    <th>ULTIMA ALTERAÇÃO</th>
                     <th>OPÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($privilegios as $privilegio)
+                @foreach($usuarios as $usuario)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $privilegio->NOME }}</td>
-                    <td>{{ $privilegio->SGBD }}</td>
-                    <td><a href="privilegios/{{ $privilegio->ID }}/edit"><i class="far fa-edit"></i></a><a href="privilegios/confirm/{{ $privilegio->ID }}"><i class="fas fa-trash-alt"></i></td>
+                    <td>{{ $usuario->USER }}</td>
+                    <td>{{ $usuario->HOST }}</td>
+                    <td>{{ $usuario->GRUPO }}</td>
+                    <td>{{ $usuario->DATA }}</td>
+                    <td><a href="usuarios/{{ $usuario->ID }}/edit"><i class="far fa-edit"></i></a><a href="usuarios/confirm/{{ $usuario->ID }}"><i class="fas fa-trash-alt"></i></td>
                 </tr>
                 @endforeach
             </tbody>

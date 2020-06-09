@@ -405,13 +405,35 @@
     });
 
     $(document).ready(function(){
-      $('.js-multiple-data').click(function(){
-        var b = document.getElementById('teste');
+      $('.btn').click(function(){
+        var b = document.getElementById('dadosSGBD');
         b.value = $('.js-multiple').select2().val();
       });
     });
 
+    $(document).ready(function () {
+      $('.text-uppercase').on('focusout', function () {
+      var texto = $(this).val();
+      texto = texto.replace(/^\s+|\s+$/g,"");
+    
+      $(this).val(texto);
+      });
+    });
 
+    $(document).ready(function() {
+    $("#showPassword").on('click', function(event) {
+        event.preventDefault();
+        if($('#showPassword input').attr("type") == "text"){
+            $('#showPassword input').attr('type', 'password');
+            $('#showPassword i').addClass( "fa-eye-slash" );
+            $('#showPassword i').removeClass( "fa-eye" );
+        }else if($('#showPassword input').attr("type") == "password"){
+            $('#showPassword input').attr('type', 'text');
+            $('#showPassword i').removeClass( "fa-eye-slash" );
+            $('#showPassword i').addClass( "fa-eye" );
+        }
+    });
+});
   </script>
 
   <!-- Page level plugins 

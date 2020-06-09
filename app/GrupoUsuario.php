@@ -36,4 +36,9 @@ class GrupoUsuario extends Model
                             GROUP BY gp.ID', [$id]);
                             
     }
+
+    public function usuarios(){
+
+        return $this->hasMany('\App\Usuario', 'GRUPO_USUARIO_ID');
+    }
 }

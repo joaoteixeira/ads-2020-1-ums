@@ -33,6 +33,10 @@ Route::resource('/gruposUsuarios', 'grupoUsuarioController');
 
 Route::resource('/privilegios', 'privilegioController');
 
+Route::resource('/usuarios', 'usuarioController');
+
 Route::get('/gruposUsuarios/confirm/{id}', 'grupoUsuarioController@confirm')->name('gruposUsuarios.confirm');
 
 Route::get('/ambientes/confirm/{id}', 'ambienteController@confirm')->name('ambientes.confirm');
+
+Route::get('/privilegios/confirm/{id}', 'privilegioController@confirm')->name('privilegios.confirm');

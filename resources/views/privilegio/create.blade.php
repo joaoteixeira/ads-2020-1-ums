@@ -6,7 +6,7 @@
         @csrf
         <div class="form-group">
             <label for="">Nome do Privilégio</label>
-            <input type="text" class="form-control" id="" name="NOME">
+            <input type="text" class="form-control text-uppercase" id="" name="NOME">
         </div>
         <div class="form-group">
             <label for="">SGBD's válidos para o privilégio</label>
@@ -17,7 +17,7 @@
             </select>
         </div>
         <div class="form-group">
-            <input type="text" hidden id="teste" class="js-multiple-data" value="">
+            <input type="text" hidden id="dadosSGBD" name="SGBD_ID" value="">
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
